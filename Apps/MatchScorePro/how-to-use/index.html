@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use MatchScore Pro</title>
+  <meta name="description" content="Learn how to use MatchScore Pro for tennis, pickleball, and ping-pong scoring, match history, stats, and Pro features." />
+  <style>
+    :root {
+      --primary: #2563EB;
+      --bg: #f8fbff;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --warning: #d97706;
+      --shadow: 0 12px 36px rgba(37, 99, 235, 0.12);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(37,99,235,0.10), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, #f3f7fd 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 40px 0 28px;
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 24px;
+      align-items: center;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226,232,240,0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .app-icon {
+      width: 104px;
+      height: 104px;
+      border-radius: 24px;
+      box-shadow: 0 14px 30px rgba(37,99,235,0.20);
+      object-fit: cover;
+      background: #dbeafe;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 6vw, 54px);
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2.3vw, 20px);
+      max-width: 760px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.24);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .shot-block {
+      margin-top: 24px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .shot-block img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .hero-banner {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .shot-caption {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .gallery-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+    }
+
+    .gallery-card h3 {
+      margin: 10px 0 4px;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .gallery-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .quick-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(248, 251, 255, 0.85);
+      border-top: 1px solid rgba(226,232,240,0.9);
+      border-bottom: 1px solid rgba(226,232,240,0.9);
+    }
+
+    .quick-nav .wrap {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 12px 0;
+      scrollbar-width: none;
+    }
+
+    .quick-nav .wrap::-webkit-scrollbar { display: none; }
+
+    .pill {
+      white-space: nowrap;
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 26px 0;
+    }
+
+    .section-head {
+      margin-bottom: 16px;
+    }
+
+    .section-kicker {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .section-intro {
+      margin: 0;
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      grid-column: span 6;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .card li { margin: 8px 0; }
+
+    .span-12 { grid-column: span 12; }
+    .span-4 { grid-column: span 4; }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .step h3 { margin: 0 0 8px; font-size: 20px; }
+    .step p { margin: 0; color: var(--muted); }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      background: linear-gradient(180deg, white 0%, #f8fbff 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .feature .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.16;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .accent {
+      background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+    }
+
+    .accent p,
+    .accent li,
+    .accent .muted-light { color: rgba(255,255,255,0.88); }
+
+    .pro-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.24);
+      padding: 8px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .faq details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    .faq summary::-webkit-details-marker { display: none; }
+
+    .faq p {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 18px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .small {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .steps,
+      .feature-list,
+      .pro-wrap,
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .card,
+      .span-4 { grid-column: span 12; }
+    }
+
+    @media (max-width: 760px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+
+      .app-icon { width: 84px; height: 84px; }
+
+      .steps,
+      .feature-list,
+      .pro-wrap,
+      .gallery { grid-template-columns: 1fr; }
+
+      .grid { gap: 14px; }
+
+      .card,
+      .span-12,
+      .span-4 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-card">
+        <img class="app-icon" src="assets/app-icon.png" alt="MatchScore Pro app icon" />
+        <div>
+          <div class="eyebrow">Quick Start Guide</div>
+          <h1>How to Use MatchScore Pro</h1>
+          <p class="sub">A simple guide for scoring tennis, pickleball, and ping-pong matches, tracking player history, reviewing stats, and getting more out of MatchScore Pro.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#quick-start">Start here</a>
+            <a class="btn btn-secondary" href="#pro-features">See Pro features</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="shot-block">
+        <img class="hero-banner" src="assets/uploaded/hero-banner.png" alt="MatchScore Pro promotional banner" />
+        <div class="shot-caption">MatchScore Pro for tennis, pickleball, and ping-pong.</div>
+      </div>
+
+      <div class="shot-block">
+        <img src="assets/app-screens.png" alt="MatchScore Pro app screenshots showing New Match, live scoring, stats, and match details" />
+        <div class="shot-caption">Original quick preview strip from the app help page.</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="quick-nav" aria-label="On-page navigation">
+    <div class="wrap">
+      <a class="pill" href="#quick-start">Quick Start</a>
+      <a class="pill" href="#setup">Match Setup</a>
+      <a class="pill" href="#scoring">Scoring</a>
+      <a class="pill" href="#history">History</a>
+      <a class="pill" href="#stats">Stats</a>
+      <a class="pill" href="#players">Players</a>
+      <a class="pill" href="#settings">Settings</a>
+      <a class="pill" href="#pro-features">Pro</a>
+      <a class="pill" href="#faq">FAQ</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="quick-start">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Quick Start</div>
+          <h2>Start your first match in a few taps</h2>
+          <p class="section-intro">The fastest path is simple: choose a sport, pick a preset, add player names, and start scoring. MatchScore Pro handles the scoring rules for you.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <h3>Choose a sport</h3>
+            <p>Open the New Match tab and choose Tennis, Pickleball, or Ping-Pong.</p>
+          </article>
+          <article class="step">
+            <h3>Pick a format</h3>
+            <p>Select a built-in preset or adjust the match settings manually for your preferred format.</p>
+          </article>
+          <article class="step">
+            <h3>Add players</h3>
+            <p>Enter names by hand or select saved Player Profiles. You can choose Singles or Doubles.</p>
+          </article>
+          <article class="step">
+            <h3>Start scoring</h3>
+            <p>Tap Start Match, then tap the left or right side during play to award points instantly.</p>
+          </article>
+        </div>
+
+        <div class="gallery">
+          <article class="gallery-card">
+            <img src="assets/uploaded/01-tennis-setup.jpg" alt="Tennis setup screen" />
+            <h3>Tennis setup</h3>
+            <p>Choose tennis, set the number of sets, and enter player names.</p>
+          </article>
+          <article class="gallery-card">
+            <img src="assets/uploaded/02-pickleball-setup.jpg" alt="Pickleball setup screen" />
+            <h3>Pickleball setup</h3>
+            <p>Pick points to win, number of games, and start scoring fast.</p>
+          </article>
+          <article class="gallery-card">
+            <img src="assets/uploaded/03-pingpong-setup.jpg" alt="Ping-Pong setup screen" />
+            <h3>Ping-Pong setup</h3>
+            <p>Use the Ping-Pong format with its own points and game settings.</p>
+          </article>
+          <article class="gallery-card">
+            <img src="assets/uploaded/08-info.jpg" alt="Info tab screen" />
+            <h3>Built-in help</h3>
+            <p>The Info tab keeps rules, instructions, and app details in one place.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="setup">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Match Setup</div>
+          <h2>Build the match your way</h2>
+          <p class="section-intro">Use presets for speed or customize everything yourself. MatchScore Pro supports different sports, formats, and player setups without making the setup screen feel heavy.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Presets</h3>
+            <p>Presets apply common rule sets automatically so you can get on court faster.</p>
+            <ul>
+              <li>Tennis includes formats like Singles Best of 3, Singles Best of 5, Pro Set, Doubles Best of 3, No-Ad Singles, and No-Ad Doubles.</li>
+              <li>Pickleball includes rally scoring presets for 11, 15, 21, and Best of 5 to 11.</li>
+              <li>Ping-Pong includes standard, quick, and traditional presets.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Singles or Doubles</h3>
+            <p>Switch between Singles and Doubles directly on the New Match screen.</p>
+            <ul>
+              <li>Singles uses one player per side.</li>
+              <li>Doubles lets you set up two teams with team names and four individual players.</li>
+              <li>Team names show during scoring, while individual players are still tracked for stats.</li>
+            </ul>
+          </article>
+
+          <article class="card span-12 accent">
+            <div class="badge">Good to know</div>
+            <h3>Player names can be reused from your saved profiles</h3>
+            <p class="muted-light">Tap a player field during setup to search your saved profiles instead of typing each name again. This makes repeat matches much faster and keeps your stats consistent.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="scoring">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Live Scoring</div>
+          <h2>Keep score quickly and confidently</h2>
+          <p class="section-intro">The live scoring screen is designed to be fast under pressure. Tap the side that won the point and let the app manage the rule logic in the background.</p>
+        </div>
+
+        <div class="gallery">
+          <article class="gallery-card">
+            <img src="assets/uploaded/04-live-scoring.jpg" alt="Live scoring screen" />
+            <h3>Live scoring screen</h3>
+            <p>See serving guidance, current score, and large tap targets for each side.</p>
+          </article>
+          <article class="gallery-card">
+            <img src="assets/uploaded/05-match-summary.jpg" alt="Match summary screen" />
+            <h3>Match summary</h3>
+            <p>Review the final result right after the match ends.</p>
+          </article>
+          <article class="gallery-card">
+            <img src="assets/uploaded/06-history.jpg" alt="History screen" />
+            <h3>History tab</h3>
+            <p>Browse completed matches and filter them by sport.</p>
+          </article>
+          <article class="gallery-card">
+            <img src="assets/uploaded/07-stats.jpg" alt="Stats screen" />
+            <h3>Stats tab</h3>
+            <p>Track wins, losses, totals, and head-to-head records.</p>
+          </article>
+        </div>
+
+        <div class="feature-list">
+          <article class="feature">
+            <div class="icon">PT</div>
+            <h3>Tap to award points</h3>
+            <p>Tap the left or right side of the screen to give a point to the correct player or team. The score updates immediately.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">UN</div>
+            <h3>Undo and redo</h3>
+            <p>Use Undo to reverse a mistaken point. Use Redo to re-apply it. Redo clears when a new point is scored.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">AI</div>
+            <h3>Rule-aware scoring</h3>
+            <p>The app automatically advances games, sets, tiebreaks, and match completion based on your chosen settings.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">SV</div>
+            <h3>Smart prompts</h3>
+            <p>See serving guidance, court-side prompts, and alerts such as Deuce, Advantage, Set Point, Match Point, Tiebreak, and Change Ends.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">VC</div>
+            <h3>Voice announcements</h3>
+            <p>Turn on spoken alerts from the top bar to hear important moments during play. Voice announcements work offline.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">TV</div>
+            <h3>Spectator Mode</h3>
+            <p>Tap the TV icon during a match for a large, easy-to-read display that works well from across the court.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="summary">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">After the Match</div>
+          <h2>Review the result and move on fast</h2>
+          <p class="section-intro">When the match ends, MatchScore Pro takes you to a summary screen so you can review the result, start a rematch, or share the outcome.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card span-4">
+            <h3>Match Summary</h3>
+            <p>See the winner, final score, score breakdown, and match duration.</p>
+          </article>
+          <article class="card span-4">
+            <h3>Rematch</h3>
+            <p>Start a rematch with the same players and settings without rebuilding the setup from scratch.</p>
+          </article>
+          <article class="card span-4">
+            <h3>Share Results</h3>
+            <p>Share the outcome when you want a quick way to send the final score to others.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="history">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">History</div>
+          <h2>Look up past matches anytime</h2>
+          <p class="section-intro">Your completed matches stay organized in one place so you can revisit results, review details, and start rematches later.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>What you can do in History</h3>
+            <ul>
+              <li>See completed matches with scores, duration, and settings.</li>
+              <li>Search by player name.</li>
+              <li>Filter by sport and match type.</li>
+              <li>Open any match for a deeper breakdown.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Match Detail screen</h3>
+            <ul>
+              <li>Review the score breakdown and match details.</li>
+              <li>Start a rematch from the detail page.</li>
+              <li>Share results.</li>
+              <li>Delete the match if needed.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Stats</div>
+          <h2>See how you are doing over time</h2>
+          <p class="section-intro">The Stats tab turns your match history into something useful, from overall totals to player rankings and head-to-head records.</p>
+        </div>
+
+        <div class="feature-list">
+          <article class="feature">
+            <div class="icon">OV</div>
+            <h3>Overview</h3>
+            <p>Total matches, win rate, average duration, streaks, and monthly match counts.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">RF</div>
+            <h3>Recent Form</h3>
+            <p>A quick look at your last 10 match results so you can spot trends at a glance.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">PL</div>
+            <h3>Player rankings</h3>
+            <p>See players ranked by matches played and win rate, with sport-by-sport breakdowns.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">HH</div>
+            <h3>Head-to-head</h3>
+            <p>Review win-loss records between players or teams and compare results by sport.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">DB</div>
+            <h3>Doubles tracking</h3>
+            <p>In doubles, each player on the winning team gets credit so individual stats still stay meaningful.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">CH</div>
+            <h3>Charts</h3>
+            <p>Monthly activity helps you see how often you are playing and whether your volume is changing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="players">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Players</div>
+          <h2>Save the people you play with</h2>
+          <p class="section-intro">The Players tab helps you build a reusable list of player profiles so setup becomes faster and your records stay cleaner.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Each player profile can store</h3>
+            <ul>
+              <li>Name</li>
+              <li>Preferred sport</li>
+              <li>Handedness</li>
+              <li>Club</li>
+              <li>Notes</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>From a player profile you can</h3>
+            <ul>
+              <li>View win-loss record and win rate.</li>
+              <li>See recent matches and sport breakdowns.</li>
+              <li>Start a new match with that player pre-filled.</li>
+              <li>Edit the profile when details change.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="settings">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Settings</div>
+          <h2>Set defaults once and save time later</h2>
+          <p class="section-intro">Use Settings to decide how new matches should start and how the app behaves by default.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card span-12">
+            <ul>
+              <li>Choose your default sport so the New Match screen opens the way you like.</li>
+              <li>Set a default match type: Singles or Doubles.</li>
+              <li>Enable voice announcements by default.</li>
+              <li>Toggle high-contrast Spectator Mode behavior.</li>
+              <li>Clear all match history or reset player data if needed.</li>
+              <li>If you leave a match in progress, the app can prompt you to resume or abandon it when you return.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pro-features">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Pro Unlock</div>
+          <h2>Get the full MatchScore Pro experience</h2>
+          <p class="section-intro">The app includes a one-time Pro unlock for players who want advanced features, bigger tracking limits, and more match setup options.</p>
+        </div>
+
+        <div class="pro-wrap">
+          <article class="card accent">
+            <div class="badge">One-time upgrade</div>
+            <h3>What Pro unlocks</h3>
+            <ul>
+              <li>Doubles Mode</li>
+              <li>Spectator Mode</li>
+              <li>Advanced Statistics</li>
+              <li>History search and filters</li>
+              <li>Unlimited Player Profiles</li>
+              <li>All built-in match presets</li>
+              <li>Advanced Match Summary</li>
+            </ul>
+            <p class="muted-light small">Free users can save up to 4 player profiles and get 1 preset per sport. Pro removes those limits and opens the full feature set.</p>
+          </article>
+
+          <article class="card">
+            <h3>Restore purchases</h3>
+            <p>If you already bought Pro on the same Google account, use the restore option in the app to recover your unlock after reinstalling or moving to a new device.</p>
+            <p class="small">The in-app product ID in the project is <strong>matchscore_pro_unlock</strong>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap faq">
+        <div class="section-head">
+          <div class="section-kicker">FAQ</div>
+          <h2>Common questions</h2>
+          <p class="section-intro">A few quick answers for the things people usually want to know first.</p>
+        </div>
+
+        <details>
+          <summary>Does MatchScore Pro work offline?</summary>
+          <p>Yes. Core scoring and voice announcements are designed to work without an internet connection.</p>
+        </details>
+
+        <details>
+          <summary>What happens if I close the app during a match?</summary>
+          <p>Your active match is saved. When you reopen the app, you can resume where you left off or abandon the in-progress match.</p>
+        </details>
+
+        <details>
+          <summary>Can I use saved players during setup?</summary>
+          <p>Yes. Tap a player name field during match setup to search and select saved Player Profiles.</p>
+        </details>
+
+        <details>
+          <summary>Can I show the score to spectators?</summary>
+          <p>Yes. During a live match, tap the TV icon to open Spectator Mode for a larger display that is easier to read from a distance.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Need help or want to send feedback? Contact <a href="mailto:yurybrei.apps@gmail.com?subject=MatchScore%20Pro%20Support">yurybrei.apps@gmail.com</a>.</p>
+      <p><a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+</body>
+</html>
