@@ -1,1 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eternal Light - How To Use</title>
+  <style>
+    :root {
+      --bg: #f5efe4;
+      --bg2: #fffaf2;
+      --card: rgba(255, 250, 242, 0.94);
+      --text: #2f2a24;
+      --muted: #6a6157;
+      --accent: #8a6a3f;
+      --accent-2: #c58c56;
+      --border: #dbc8a5;
+      --line: #eadcc3;
+      --shadow: rgba(70, 52, 28, 0.10);
+      --halo: rgba(255, 225, 170, 0.45);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at top, rgba(255, 235, 191, 0.55) 0%, rgba(255, 235, 191, 0) 28%),
+        linear-gradient(180deg, #fcf7ef 0%, var(--bg) 100%);
+    }
+    a { color: #6b4e2f; }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 18px 72px;
+    }
+    .hero,
+    .card,
+    .toc,
+    .note,
+    .callout {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 36px var(--shadow);
+    }
+    .hero {
+      border-radius: 28px;
+      padding: 28px 24px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 22px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:before,
+    .hero:after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+    .hero:before {
+      width: 190px;
+      height: 190px;
+      right: -40px;
+      top: -55px;
+      background: rgba(255, 228, 170, 0.35);
+    }
+    .hero:after {
+      width: 120px;
+      height: 120px;
+      left: -25px;
+      bottom: -35px;
+      background: rgba(255,255,255,0.35);
+    }
+    .hero-icon {
+      width: 108px;
+      height: 108px;
+      border-radius: 28px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.65);
+      box-shadow: 0 0 0 14px rgba(255, 241, 197, 0.38), 0 10px 30px rgba(42, 27, 7, 0.18);
+      background: #0e2a52;
+    }
+    .eyebrow {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+    h1, h2, h3 {
+      color: #3c2d1b;
+      line-height: 1.22;
+      margin: 0;
+    }
+    h1 { font-size: 2.2rem; }
+    h2 {
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    .hero p {
+      margin: 10px 0 0;
+      max-width: 760px;
+    }
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .toc, .card, .note, .callout {
+      border-radius: 22px;
+      padding: 22px 20px;
+    }
+    .toc ul, .checklist, .steps, .tips {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+    .toc li, .checklist li, .steps li, .tips li, p, li {
+      font-size: 1rem;
+    }
+    .callout {
+      background: linear-gradient(180deg, #fff7e6 0%, #fffaf2 100%);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .section-header {
+      margin-bottom: 10px;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .pill {
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 7px 12px;
+      font-size: 0.94rem;
+      color: #574b3e;
+    }
+    .shot {
+      margin-top: 14px;
+      border: 1px dashed #d0bc95;
+      border-radius: 20px;
+      min-height: 220px;
+      background:
+        linear-gradient(180deg, rgba(250, 246, 238, 0.96) 0%, rgba(244, 236, 224, 0.9) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+    }
+    .shot:before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(197, 140, 86, 0.18);
+      pointer-events: none;
+    }
+    .shot-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8a6a3f;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .phone {
+      max-width: 280px;
+      margin: 0 auto;
+      border-radius: 28px;
+      padding: 12px;
+      background: #17325b;
+      box-shadow: 0 16px 34px rgba(22, 31, 55, 0.16);
+    }
+    .phone-screen {
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top, rgba(255, 231, 182, 0.9) 0%, rgba(255, 231, 182, 0.28) 22%, rgba(243, 234, 221, 0.94) 52%, rgba(228, 219, 207, 0.94) 100%);
+      min-height: 170px;
+      padding: 14px;
+    }
+    .mock-circle {
+      width: 74px;
+      height: 74px;
+      border-radius: 999px;
+      margin: 4px auto 12px;
+      background: radial-gradient(circle, #fff5cc 0%, #f0d89d 70%, #dab36d 100%);
+      box-shadow: 0 0 0 10px rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e2f5b;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .mock-line {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(53, 68, 105, 0.16);
+      margin: 8px 0;
+    }
+    .mock-btn {
+      height: 34px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #cfa364 0%, #b9854c 100%);
+      margin-top: 14px;
+      box-shadow: 0 6px 16px rgba(122, 83, 32, 0.24);
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .mini-chip {
+      border-radius: 999px;
+      height: 28px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(174, 150, 114, 0.32);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .small {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .muted {
+      color: var(--muted);
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+    .table th, .table td {
+      border: 1px solid #e8dac1;
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+      font-size: 0.97rem;
+      background: rgba(255,255,255,0.78);
+    }
+    .table th {
+      background: rgba(248, 238, 220, 0.95);
+      color: #4a3925;
+    }
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 18px 0 0;
+    }
+    @media (max-width: 860px) {
+      .top-grid, .grid, .two-col {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-icon {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <img class="hero-icon" src="images/icon.png" alt="Eternal Light app icon" />
+      <div>
+        <p class="eyebrow">Getting Started Guide</p>
+        <h1>How To Use Eternal Light</h1>
+        <p>
+          Eternal Light is a calm Christian prayer and reflection app designed to help you begin prayer quickly,
+          choose a prayer topic that fits your present need, listen to spoken prayer, spend time in quiet focus,
+          and save reflections for later.
+        </p>
+        <p class="small">
+          This guide was prepared from the app source and UI structure. It is ready for GitHub Pages now and can be updated later with real screenshots.
+        </p>
+      </div>
+    </section>
 
+    <div class="top-grid">
+      <section class="toc">
+        <h2>Quick Navigation</h2>
+        <ul>
+          <li><a href="#start">Start screen and first prayer</a></li>
+          <li><a href="#home">Home tab and prayer choices</a></li>
+          <li><a href="#prayer">Prayer screen and audio controls</a></li>
+          <li><a href="#holy-spirit">Random guided prayer flow</a></li>
+          <li><a href="#focus">Quiet prayer focus mode</a></li>
+          <li><a href="#journal">Journal and saved reflections</a></li>
+          <li><a href="#progress">Progress, streaks, and goals</a></li>
+          <li><a href="#settings">Settings and reminders</a></li>
+          <li><a href="#tips">Helpful tips</a></li>
+        </ul>
+      </section>
+
+      <aside class="callout">
+        <h2>Best Way To Use The App</h2>
+        <ol class="steps">
+          <li>Open Eternal Light and begin prayer.</li>
+          <li>Choose a prayer circumstance or use the guided random option.</li>
+          <li>Read or listen to the prayer slowly.</li>
+          <li>Enter quiet prayer focus mode if you want a few undistracted minutes.</li>
+          <li>Save a short reflection in the journal.</li>
+          <li>Review your streaks, minutes prayed, and goals over time.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="grid">
+      <section class="card section" id="start">
+        <div class="section-header">
+          <p class="eyebrow">1. Welcome</p>
+          <h2>Start screen and first prayer</h2>
+        </div>
+        <p>
+          When you open Eternal Light, you first see the welcome screen with the app title, a devotional background,
+          and a main button to begin prayer. This screen is meant to feel peaceful and uncluttered.
+        </p>
+        <ul class="checklist">
+          <li>Tap <strong>Begin Prayer</strong> to enter the main app.</li>
+          <li>The app then opens the main tab experience.</li>
+          <li>The bottom navigation gives quick access to prayer, journal, progress, and settings.</li>
+        </ul>
+        <div class="shot">
+          <div class="shot-title">Placeholder image - welcome screen</div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="mock-circle">✝</div>
+              <div class="mock-line" style="width: 72%; margin-left:auto; margin-right:auto;"></div>
+              <div class="mock-line" style="width: 54%; margin-left:auto; margin-right:auto;"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card section" id="home">
+        <div class="section-header">
+          <p class="eyebrow">2. Home</p>
+          <h2>Home tab and prayer choices</h2>
+        </div>
+        <p>
+          The prayer entry flow centers on choosing what you want prayer for. Eternal Light presents a list of core
+          prayer circumstances as easy-to-tap rounded buttons.
+        </p>
+        <p>Use this screen when you already know what kind of prayer you want.</p>
+        <div class="pill-row">
+          <span class="pill">Comfort</span>
+          <span class="pill">Peace</span>
+          <span class="pill">Strength</span>
+          <span class="pill">Hope</span>
+          <span class="pill">Healing</span>
+          <span class="pill">Guidance</span>
+        </div>
+        <div class="shot">
+          <div class="shot-title">Placeholder image - prayer topics screen</div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="mock-line" style="width: 62%; margin-left:auto; margin-right:auto;"></div>
+              <div class="mini-grid">
+                <div class="mini-chip"></div><div class="mini-chip"></div>
+                <div class="mini-chip"></div><div class="mini-chip"></div>
+                <div class="mini-chip"></div><div class="mini-chip"></div>
+              </div>
+              <div class="mock-btn"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card section" id="prayer">
+        <div class="section-header">
+          <p class="eyebrow">3. Guided Prayer</p>
+          <h2>Prayer screen and audio controls</h2>
+        </div>
+        <p>
+          After selecting a circumstance, Eternal Light opens the prayer screen. This screen combines a scripture anchor,
+          the prayer title, the prayer text itself, and a reflection area.
+        </p>
+        <ul class="checklist">
+          <li>Read the prayer at your own pace.</li>
+          <li>Use spoken playback to listen to the prayer aloud.</li>
+          <li>Refresh or request another prayer when available.</li>
+          <li>Save the moment into your journal for later reflection.</li>
+        </ul>
+        <p class="small">
+          The app also keeps recent prayer titles and openings in mind to reduce repetitive results when live generation is available.
+        </p>
+        <div class="shot">
+          <div class="shot-title">Placeholder image - prayer screen</div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="mock-line" style="width: 50%;"></div>
+              <div class="mock-line" style="width: 92%;"></div>
+              <div class="mock-line" style="width: 86%;"></div>
+              <div class="mock-line" style="width: 90%;"></div>
+              <div class="mock-line" style="width: 72%;"></div>
+              <div class="mini-grid">
+                <div class="mini-chip"></div>
+                <div class="mini-chip"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card section" id="holy-spirit">
+        <div class="section-header">
+          <p class="eyebrow">4. Guided Choice</p>
+          <h2>Random guided prayer flow</h2>
+        </div>
+        <p>
+          If you are not sure which prayer topic to choose, use the special button at the bottom of the circumstances screen.
+          In your current app logic, this option randomly selects one of the available prayer topics and takes you directly to the prayer page.
+        </p>
+        <p>
+          This is ideal for moments when you simply want to be guided instead of browsing categories manually.
+        </p>
+        <div class="note">
+          Suggested future label for this feature: <strong>Let the Holy Spirit Guide Me</strong>. That wording fits the devotional tone better while still matching what the feature does.
+        </div>
+      </section>
+
+      <section class="card section" id="focus">
+        <div class="section-header">
+          <p class="eyebrow">5. Quiet Prayer</p>
+          <h2>Quiet prayer focus mode</h2>
+        </div>
+        <p>
+          Focus mode is built for a few undistracted minutes of quiet prayer. It keeps the screen awake, shows a prayer countdown,
+          and supports a slower rhythm for silence and stillness.
+        </p>
+        <ul class="checklist">
+          <li>Choose your quiet prayer duration in Settings.</li>
+          <li>Start focus mode when you want a countdown-based quiet prayer session.</li>
+          <li>Pause, resume, or finish the session when needed.</li>
+          <li>Completed sessions can count toward your prayer progress.</li>
+        </ul>
+        <div class="shot">
+          <div class="shot-title">Placeholder image - quiet prayer focus mode</div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="mock-circle">5:00</div>
+              <div class="mock-line" style="width: 84%; margin-left:auto; margin-right:auto;"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card section" id="journal">
+        <div class="section-header">
+          <p class="eyebrow">6. Journal</p>
+          <h2>Journal and saved reflections</h2>
+        </div>
+        <p>
+          The Journal tab lets you keep short written reflections based on your latest prayer. When a prayer is open,
+          the app can prefill a reflection draft using the prayer title, verse reference, and excerpt.
+        </p>
+        <ul class="checklist">
+          <li>Save reflections that stood out to you.</li>
+          <li>Edit an existing journal entry if you want to refine your thoughts.</li>
+          <li>Delete entries you no longer want to keep.</li>
+          <li>Clear all journal entries from Settings if needed.</li>
+        </ul>
+        <p class="small">
+          Journal entries are stored on the device for normal use.
+        </p>
+      </section>
+
+      <section class="card section" id="progress">
+        <div class="section-header">
+          <p class="eyebrow">7. Progress</p>
+          <h2>Progress, streaks, and goals</h2>
+        </div>
+        <p>
+          The Progress tab helps you stay encouraged over time. Eternal Light tracks prayer activity such as streaks,
+          completed sessions this week, and total minutes prayed.
+        </p>
+        <table class="table">
+          <tr>
+            <th>Progress item</th>
+            <th>What it means</th>
+          </tr>
+          <tr>
+            <td>Prayer streak</td>
+            <td>How many consecutive days you have maintained prayer activity.</td>
+          </tr>
+          <tr>
+            <td>Completed this week</td>
+            <td>How many recorded prayer sessions you completed during the current week.</td>
+          </tr>
+          <tr>
+            <td>Total minutes prayed</td>
+            <td>The accumulated quiet prayer time recorded in the app.</td>
+          </tr>
+          <tr>
+            <td>Goals</td>
+            <td>Targets such as consistency and quiet prayer minutes.</td>
+          </tr>
+        </table>
+      </section>
+    </div>
+
+    <div class="grid">
+      <section class="card section" id="settings">
+        <div class="section-header">
+          <p class="eyebrow">8. Settings</p>
+          <h2>Settings and reminders</h2>
+        </div>
+        <p>
+          Settings lets you shape the app around your prayer style and preferences.
+        </p>
+        <div class="two-col">
+          <div>
+            <h3>Prayer preferences</h3>
+            <ul class="checklist">
+              <li>Language preference</li>
+              <li>Denomination preference</li>
+              <li>Prayer tone</li>
+              <li>Quiet prayer duration</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Audio and reminders</h3>
+            <ul class="checklist">
+              <li>Voice selection</li>
+              <li>Speech speed</li>
+              <li>Daily prayer reminders</li>
+              <li>Journal management</li>
+            </ul>
+          </div>
+        </div>
+        <p class="small">
+          Reminders use notification permission on your device. If reminders are turned off, the app should not schedule daily prayer notifications.
+        </p>
+      </section>
+
+      <section class="card section">
+        <div class="section-header">
+          <p class="eyebrow">9. Spoken Prayer</p>
+          <h2>Voice playback and listening</h2>
+        </div>
+        <p>
+          Eternal Light includes spoken prayer playback so you can listen instead of reading. This can be especially helpful for
+          quiet prayer, nighttime use, or moments when you want a more contemplative pace.
+        </p>
+        <ul class="checklist">
+          <li>Preview voices in Settings.</li>
+          <li>Choose a preferred voice or leave it on automatic selection.</li>
+          <li>Adjust speech speed to make playback slower or faster.</li>
+          <li>Stop or pause listening when you want to continue silently.</li>
+        </ul>
+      </section>
+
+      <section class="card section">
+        <div class="section-header">
+          <p class="eyebrow">10. Languages</p>
+          <h2>Supported languages</h2>
+        </div>
+        <p>
+          Based on the source, Eternal Light supports multiple interface and prayer languages:
+        </p>
+        <div class="pill-row">
+          <span class="pill">English</span>
+          <span class="pill">Spanish</span>
+          <span class="pill">French</span>
+          <span class="pill">German</span>
+          <span class="pill">Russian</span>
+        </div>
+        <p class="small">
+          You can follow the device language automatically or choose a supported language manually in Settings.
+        </p>
+      </section>
+
+      <section class="card section" id="tips">
+        <div class="section-header">
+          <p class="eyebrow">11. Helpful Tips</p>
+          <h2>Simple ways to get the most from Eternal Light</h2>
+        </div>
+        <ul class="tips">
+          <li>Use the guided random prayer option when you do not know what to pray about.</li>
+          <li>Save short reflections instead of trying to write too much every time.</li>
+          <li>Set one daily reminder at a realistic time you can keep.</li>
+          <li>Try quiet prayer mode for just a few minutes to build consistency.</li>
+          <li>Adjust denomination and tone if you want the wording to feel closer to your tradition.</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="card section">
+      <div class="section-header">
+        <p class="eyebrow">12. Screenshot Update Plan</p>
+        <h2>What to replace later when you upload real screenshots</h2>
+      </div>
+      <p>
+        When you are ready, these are the best screenshots to swap into this page:
+      </p>
+      <ol class="steps">
+        <li>Welcome screen</li>
+        <li>Prayer circumstances screen</li>
+        <li>Prayer page</li>
+        <li>Guided random prayer flow button and result</li>
+        <li>Quiet prayer focus mode</li>
+        <li>Journal tab</li>
+        <li>Progress tab</li>
+        <li>Settings and reminder controls</li>
+      </ol>
+      <div class="divider"></div>
+      <p class="small">
+        Once you upload those images, this help page can be updated quickly by replacing the placeholder panels with actual screenshots and captions.
+      </p>
+    </section>
+
+    <p class="footer">
+      Eternal Light Help Page - prepared for GitHub Pages publishing and future Google Play support links.
+    </p>
+  </div>
+</body>
+</html>
