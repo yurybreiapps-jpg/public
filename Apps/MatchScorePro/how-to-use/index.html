@@ -418,6 +418,8 @@
       color: var(--muted);
     }
 
+    .mt-16 { margin-top: 16px; }
+
     @media (max-width: 980px) {
       .steps,
       .feature-list,
@@ -586,7 +588,7 @@
         <div class="section-head">
           <div class="section-kicker">Live Scoring</div>
           <h2>Keep score quickly and confidently</h2>
-          <p class="section-intro">The live scoring screen is designed to be fast under pressure. Tap the side that won the point and let the app manage the rule logic in the background.</p>
+          <p class="section-intro">The live scoring screen is designed to be fast under pressure. Tap the side that won the point, use the serving panel when you need to correct the server, and let the app manage the rule logic in the background.</p>
         </div>
 
         <div class="gallery">
@@ -631,17 +633,34 @@
           <article class="feature">
             <div class="icon">SV</div>
             <h3>Smart prompts</h3>
-            <p>See serving guidance, court-side prompts, and alerts such as Deuce, Advantage, Set Point, Match Point, Tiebreak, and Change Ends.</p>
+            <p>See the current server, serving side, court-side prompts, and alerts such as Deuce, Advantage, Set Point, Match Point, Tiebreak, and Change Ends.</p>
           </article>
           <article class="feature">
             <div class="icon">VC</div>
             <h3>Voice announcements</h3>
-            <p>Turn on spoken alerts from the top bar to hear important moments during play. Voice announcements work offline.</p>
+            <p>Turn on spoken alerts from the top bar to hear scores and key moments such as Deuce, Advantage, Game Point, Set Point, Match Point, and Tiebreak.</p>
           </article>
           <article class="feature">
             <div class="icon">TV</div>
             <h3>Spectator Mode</h3>
             <p>Tap the TV icon during a match for a large, easy-to-read display that works well from across the court.</p>
+          </article>
+        </div>
+
+        <div class="grid mt-16">
+          <article class="card span-12">
+            <h3>Serving controls</h3>
+            <p>The serving panel at the top of the live scoring screen shows who is serving, using blue for the left side and red for the right side. The racket icon marks the exact current server, and the arrow icon means the row can be tapped to adjust serving.</p>
+            <ul>
+              <li><strong>Singles:</strong> tap the serving pill to switch the server to the other player.</li>
+              <li><strong>Doubles:</strong> the serving team row shows both partners on separate lines. The racket icon marks the partner currently serving.</li>
+              <li><strong>Tap the active doubles team row</strong> to switch serving between partners on that same team.</li>
+              <li><strong>Tap the other doubles team row</strong> to move service to that team. The app then shows the correct partner on that team as the server.</li>
+              <li><strong>Doubles rotation is automatic:</strong> when service returns to a team after the other team serves, the partner who did not serve last takes the next service turn. This also applies during tennis tiebreak service rotation.</li>
+              <li><strong>Tennis:</strong> the prompt shows right/deuce court or left/ad court, plus Deuce, Advantage, No-Ad, Set Point, and Match Point alerts when relevant.</li>
+              <li><strong>Pickleball:</strong> the prompt shows whether the server should serve from the right or left side.</li>
+              <li><strong>Ping-Pong:</strong> the prompt shows the current server and serve count, such as Serve 1 of 2 or Serve 2 of 2. At deuce, serve alternates every point.</li>
+            </ul>
           </article>
         </div>
       </div>
@@ -860,6 +879,11 @@
         <details>
           <summary>Can I show the score to spectators?</summary>
           <p>Yes. During a live match, tap the TV icon to open Spectator Mode for a larger display that is easier to read from a distance.</p>
+        </details>
+
+        <details>
+          <summary>How do I correct or change who is serving?</summary>
+          <p>Use the serving panel at the top of the live scoring screen. In singles, tap the serving pill to switch to the other player. In doubles, tap the active team row to switch between partners, or tap the other team row to move service to that team.</p>
         </details>
       </div>
     </section>
