@@ -114,9 +114,10 @@
     <h2>Information We Collect</h2>
     <p>
       The current version of A-Tennis: AI Coach may process information that you
-      choose to provide when using the app, including tennis videos, selected stroke
-      type, AI analysis results, app-specific skill level estimates, saved coaching
-      notes, player profiles, and app settings.
+      choose to provide when using the app, including tennis videos you record or
+      import, selected key frames from those clips, selected stroke type, analysis
+      mode, player level, AI analysis results, app-specific skill level estimates,
+      saved coaching notes, player profiles, and app settings.
     </p>
     <p>
       If you sign in with Apple, the app may store your Apple-provided user identifier,
@@ -139,22 +140,26 @@
 
     <h2>AI Video Analysis</h2>
     <p>
-      To provide AI coaching feedback, trimmed video clips, selected frames, or
-      related analysis data may be sent securely to a backend service for processing.
-      The backend may use Google Gemini or another AI provider to analyze the clip and
-      return swing feedback, visual analysis points, drills, and an app-specific skill
-      level estimate.
+      To provide AI coaching feedback, the current app sends selected key frames
+      from your trimmed clip, clip timing, selected technique, analysis mode, player
+      level, and account session information securely to the A-Tennis backend. The
+      backend uses Google Gemini to analyze that information and return swing
+      feedback, visual analysis points, drills, and an app-specific skill level
+      estimate. The current MVP does not intentionally upload the full original
+      source video file for AI analysis.
     </p>
     <p>
-      Video clips, selected frames, prompts, and AI responses may be processed by the
-      AI provider according to that provider's terms and privacy policies. Google
-      Gemini API information is available from
+      Selected frames, prompts, metadata, and AI responses may be processed by the AI
+      provider according to that provider's terms and privacy policies. Google Gemini
+      API information is available from
       <a href="https://ai.google.dev/gemini-api/terms">Google AI for Developers</a>
       and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.
     </p>
     <p>
-      AI feedback is coaching guidance only. It is not medical advice, injury advice,
-      or a certified biomechanics diagnosis.
+      We do not intentionally contribute user clip frames, prompts, or AI responses
+      to Google datasets for model training. AI feedback is coaching guidance only.
+      It can be wrong or incomplete. It is not medical advice, injury advice,
+      professional coaching replacement, or a certified biomechanics diagnosis.
     </p>
 
     <h2>Local App Data</h2>
@@ -181,9 +186,9 @@
     <p>
       The current version does not include developer-operated cloud sync for your
       video history or training plan. Those items are primarily stored on your device
-      unless you choose to send a clip or selected frames for AI analysis. The app does
-      not include third-party advertising networks, tracking SDKs, or third-party
-      analytics SDKs.
+      unless you choose to send selected key frames and related metadata for AI
+      analysis. The app does not include third-party advertising networks, tracking
+      SDKs, or third-party analytics SDKs.
     </p>
     <p>
       If cloud sync, analytics, or additional AI providers are added in a future
@@ -219,10 +224,12 @@
 
     <h2>Data Retention and Deletion</h2>
     <p>
-      Local app history and settings remain on your device until you delete them in
-      the app, clear app data, or uninstall the app. Server-side data used for account
-      access, AI credits, AI analysis, security, troubleshooting, or legal compliance
-      is retained only as long as reasonably needed for those purposes.
+      Local app history, locally saved clips, thumbnails, and settings remain on your
+      device until you delete them in the app, clear app data, or uninstall the app.
+      The current backend does not intentionally store original source videos or
+      trimmed video files after an AI request. Server-side data used for account
+      access, AI credits, security, troubleshooting, or legal compliance is retained
+      only as long as reasonably needed for those purposes.
     </p>
     <p>
       You can request account deletion inside the app. Account deletion removes your
